@@ -4,27 +4,26 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ILGA Portugal — Case Study — NOORA EMILIA</title>
-<link rel="preconnect" href="https://api.fontshare.com">
 <link href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600,700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#FFFFFF; --ink:#000000; --body:#1E1605; --muted:#3D3C34; --label:#767676; --accent:#FFC300;
-    --foot-bg:#0B0B0B; --foot-text:#FFFFFF; --foot-link:#8AB4F8;
-    --maxw:1440px; --gutter:clamp(20px,4vw,72px);
-    --paper:#FAFAF7;
+    --ink:#000;--body:#1E1605;--muted:#3D3C34;--label:#767676;--accent:#FFC300;
+    --foot-bg:#0B0B0B;--foot-text:#fff;--foot-link:#8AB4F8;
+    --paper:#FAFAF7;--line:#e6e4dd;--maxw:1320px;--gutter:clamp(20px,4vw,72px);
     --paper-img:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%27200%27%20height%3D%27200%27%3E%3Cfilter%20id%3D%27n%27%3E%3CfeTurbulence%20type%3D%27fractalNoise%27%20baseFrequency%3D%270.85%27%20numOctaves%3D%274%27%20stitchTiles%3D%27stitch%27%2F%3E%3CfeColorMatrix%20type%3D%27saturate%27%20values%3D%270%27%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%27100%25%27%20height%3D%27100%25%27%20filter%3D%27url%28%23n%29%27%20opacity%3D%270.045%27%2F%3E%3C%2Fsvg%3E");
-    --switzer:"Switzer","Inter",sans-serif; --inter:"Inter",system-ui,sans-serif;
+    --switzer:"Switzer","Inter",sans-serif;--inter:"Inter",system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0;}
   html{scroll-behavior:smooth;}
-  body{background:var(--bg);color:var(--body);font-family:var(--inter);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+  body{background:var(--paper);color:var(--body);font-family:var(--inter);-webkit-font-smoothing:antialiased;}
   body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background-color:var(--paper);background-image:var(--paper-img);background-size:200px 200px;}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
-  a{color:inherit;text-decoration:none;} img{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+  .ph{background:#e9e7df;display:flex;align-items:flex-end;padding:14px;color:#9a978c;font-size:12px;letter-spacing:.04em;text-transform:uppercase;}
 
   .btn{display:inline-block;font-family:var(--inter);font-size:13px;letter-spacing:.02em;padding:14px 30px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;text-align:center;border-radius:0;transition:background .25s,color .25s;}
-  .btn:hover{background:#fff;color:var(--ink);}
+  .btn:hover{background:transparent;color:var(--ink);}
   .btn.secondary{background:transparent;color:var(--ink);}
   .btn.secondary:hover{background:var(--ink);color:#fff;}
 
@@ -42,55 +41,86 @@
   .reveal.in{opacity:1;transform:none;}
   @media(prefers-reduced-motion:reduce){.js-reveal .reveal{opacity:1;transform:none;transition:none;}}
 
-  /* ---- Back link ---- */
-  .backrow{padding-top:40px;}
-  .back{font-size:14px;color:var(--muted);display:inline-flex;align-items:center;gap:8px;}
+  .backrow{padding-top:34px;}
+  .back{font-size:14px;color:var(--muted);}
   .back:hover{color:var(--ink);}
+  .kick{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--label);margin-bottom:14px;}
 
-  /* ---- Case hero ---- */
-  .cs-hero{padding:28px 0 40px;}
-  .cs-title{font-family:var(--switzer);font-weight:600;font-size:clamp(52px,10vw,150px);line-height:.95;letter-spacing:-.05em;color:var(--ink);margin:10px 0 40px;}
-  .meta{display:grid;grid-template-columns:repeat(5,auto);gap:12px 48px;justify-content:start;margin-bottom:44px;}
-  .meta .m-label{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--label);margin-bottom:6px;}
-  .meta .m-val{font-family:var(--switzer);font-weight:500;font-size:16px;color:var(--ink);max-width:200px;}
-  .cs-mock{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;overflow:hidden;}
-  .cs-mock img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;}
+  /* ---- Intro (Option A) ---- */
+  .intro{padding:36px 0 clamp(60px,8vw,100px);}
+  .tagline{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--label);margin-bottom:18px;}
+  .tagline .t1{color:var(--ink);font-weight:500;}
+  .intro-grid{display:grid;grid-template-columns:1.5fr .85fr;gap:clamp(30px,5vw,72px);align-items:start;}
+  .statement{font-family:var(--switzer);font-weight:600;font-size:clamp(38px,6vw,84px);line-height:1.0;letter-spacing:-.04em;color:var(--ink);}
+  .statement .dim{color:#c8c5bb;}
+  .lead{font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--body);max-width:520px;margin-top:26px;}
+  .lead b{color:var(--ink);}
+  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;}
+  .intro-aside .ph{aspect-ratio:3/4;}
+  .meta{display:grid;grid-template-columns:repeat(5,1fr);gap:22px 32px;margin-top:clamp(48px,6vw,72px);padding-top:34px;border-top:1px solid var(--line);}
+  .meta .m-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--label);margin-bottom:8px;}
+  .meta .m-val{font-family:var(--switzer);font-weight:500;font-size:16px;line-height:1.35;color:var(--ink);}
 
-  /* ---- Section (two-column: label left, body right) ---- */
-  .cs-sec{display:grid;grid-template-columns:1fr 2fr;gap:clamp(24px,5vw,64px);padding:clamp(60px,8vw,110px) 0;align-items:start;}
-  .cs-sec .lbl{font-family:var(--switzer);font-weight:500;font-size:clamp(22px,3vw,32px);letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);position:sticky;top:100px;}
-  .cs-body{max-width:720px;}
-  .cs-body p{font-size:clamp(17px,1.4vw,20px);line-height:1.6;color:var(--body);margin-bottom:22px;}
-  .cs-body b{color:var(--ink);}
-  .cs-body .q{font-family:var(--switzer);font-weight:500;font-style:italic;color:var(--ink);}
-  .actions{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:36px;}
+  /* ---- Alternating image + text (Option B) ---- */
+  .altsec{padding:clamp(56px,7vw,96px) 0;}
+  .altrow{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center;}
+  .altrow .imgcol .ph{aspect-ratio:4/3;}
+  .altrow.flip .imgcol{order:2;}
+  .altrow h3{font-family:var(--switzer);font-weight:500;font-size:clamp(26px,3.4vw,42px);letter-spacing:-.03em;color:var(--ink);margin-bottom:18px;}
+  .altrow p{font-size:clamp(16px,1.3vw,19px);line-height:1.62;color:var(--body);}
+  .altrow p b{color:var(--ink);}
 
-  /* ---- Metric callouts ---- */
-  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:24px;margin:8px 0 34px;}
-  .metric .big{font-family:var(--switzer);font-weight:600;font-size:clamp(38px,5vw,60px);letter-spacing:-.04em;color:var(--ink);line-height:1;}
-  .metric .cap{font-size:14px;color:var(--muted);margin-top:8px;line-height:1.4;}
+  /* ---- Sticky notes + scrolling images (Option C) ---- */
+  .stickysec{padding:clamp(56px,7vw,100px) 0;}
+  .sticky-sec{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,5vw,80px);align-items:start;}
+  .s-imgs{display:flex;flex-direction:column;gap:clamp(24px,3vw,44px);}
+  .s-imgs .ph{aspect-ratio:4/3;}
+  .s-notes{position:sticky;top:96px;align-self:start;}
+  .s-notes h3{font-family:var(--switzer);font-weight:500;font-size:clamp(26px,3vw,36px);letter-spacing:-.03em;color:var(--ink);margin-bottom:24px;}
+  .s-notes ul{list-style:none;}
+  .s-notes li{padding:16px 0 16px 26px;border-top:1px solid var(--line);position:relative;font-size:17px;line-height:1.5;}
+  .s-notes li::before{content:"";position:absolute;left:0;top:22px;width:9px;height:9px;background:var(--accent);}
+  .s-notes li b{color:var(--ink);font-weight:500;}
 
-  /* ---- Lists ---- */
-  .cs-body ul{list-style:none;margin:6px 0 26px;}
-  .cs-body li{font-size:17px;line-height:1.6;color:var(--body);padding-left:22px;position:relative;margin-bottom:10px;}
-  .cs-body li::before{content:"";position:absolute;left:0;top:11px;width:8px;height:8px;background:var(--accent);}
-  .ia li{padding:16px 0;border-top:1px solid #e6e4dd;}
-  .ia li strong{font-family:var(--switzer);font-weight:500;color:var(--ink);}
-  .quote{border-left:3px solid var(--accent);padding:6px 0 6px 22px;margin:6px 0 26px;}
-  .quote p{font-family:var(--switzer);font-weight:500;font-size:clamp(19px,2vw,26px);letter-spacing:-.02em;line-height:1.35;color:var(--ink);}
-  .quote cite{display:block;font-style:normal;font-size:14px;color:var(--muted);margin-top:12px;}
+  /* ---- Testimonial (Option D) ---- */
+  .testi{padding:clamp(70px,9vw,130px) 0;}
+  .testi .inner{max-width:900px;margin:0 auto;text-align:center;}
+  .qmark{width:58px;height:44px;color:var(--ink);margin:0 auto 30px;}
+  .testi blockquote{font-family:var(--switzer);font-weight:500;font-size:clamp(20px,2.4vw,30px);line-height:1.4;letter-spacing:-.01em;color:var(--ink);}
+  .attrib{display:flex;align-items:center;gap:18px;margin-top:44px;text-align:left;}
+  .attrib .avatar{width:64px;height:64px;border-radius:50%;background:#e2e0d8;flex:none;overflow:hidden;}
+  .attrib .avatar img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);}
+  .attrib .name{font-family:var(--switzer);font-weight:600;font-size:18px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);}
+  .attrib .role{font-size:14px;line-height:1.45;color:var(--label);margin-top:4px;max-width:560px;}
 
-  /* ---- More to explore ---- */
-  .more{padding:clamp(70px,9vw,120px) 0;}
-  .more .lbl{font-family:var(--switzer);font-weight:500;font-size:clamp(22px,3vw,30px);letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);margin-bottom:44px;}
+  /* ---- Pull-quote (Option E — unattributed, use when no named source) ---- */
+  .pull{padding:clamp(50px,7vw,90px) 0;}
+  .pull blockquote{max-width:900px;margin:0 auto;text-align:center;font-family:var(--switzer);font-weight:500;font-size:clamp(20px,2.4vw,30px);line-height:1.4;letter-spacing:-.01em;color:var(--ink);}
+  .pull cite{display:block;font-style:normal;font-size:14px;color:var(--label);margin-top:20px;text-align:center;}
+
+  /* ---- More projects ---- */
+  .more{padding:clamp(64px,8vw,110px) 0;border-top:1px solid var(--line);}
+  .more-head{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:44px;}
+  .more-head .lbl{font-family:var(--switzer);font-weight:500;font-size:clamp(22px,3vw,30px);letter-spacing:-.03em;text-transform:uppercase;color:var(--ink);}
   .more-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);}
-  .mcard{cursor:pointer;}
   .mcard .mk{aspect-ratio:16/11;display:flex;align-items:center;justify-content:center;overflow:hidden;}
   .mcard .mk img{max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;transition:transform .6s ease;}
   .mcard:hover .mk img{transform:scale(1.03);}
-  .mcard h4{font-family:var(--switzer);font-weight:500;font-size:clamp(24px,3.5vw,40px);letter-spacing:-.04em;color:var(--ink);margin-top:20px;}
+  .mcard h4{font-family:var(--switzer);font-weight:500;font-size:clamp(24px,3.4vw,40px);letter-spacing:-.04em;color:var(--ink);margin-top:20px;}
   .mcard .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
   .mcard .tag{font-size:12px;color:var(--muted);border:1px solid #e2e2e2;padding:5px 11px;border-radius:999px;}
+
+  /* ---- Media helpers (real images / figures / video + iframe embeds) ---- */
+  /* Content images swap straight into the .ph slots. mix-blend-mode:multiply
+     hides the baked-in white backgrounds of the mockups on the paper texture
+     — remove it once transparent PNGs are available. */
+  .intro-aside img,.altrow .imgcol img,.s-imgs img{width:100%;height:auto;mix-blend-mode:multiply;}
+  figure{margin:0;}
+  figcaption{font-size:13px;line-height:1.45;color:var(--label);letter-spacing:.02em;margin-top:10px;}
+  .media{width:100%;}
+  .media video{width:100%;height:auto;display:block;}
+  .embed{position:relative;width:100%;aspect-ratio:16/9;}
+  .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 
   /* ---- Footer ---- */
   footer{background:var(--foot-bg);color:var(--foot-text);padding:clamp(70px,9vw,110px) 0 40px;}
@@ -101,22 +131,41 @@
   .socials svg{width:24px;height:24px;display:block;}
   .foot-bottom{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px;margin-top:clamp(60px,10vw,120px);}
   .foot-contact{display:flex;flex-direction:column;gap:8px;font-size:15px;}
-  .foot-contact .copyable{color:var(--foot-link);text-decoration:underline;text-underline-offset:3px;width:fit-content;cursor:pointer;position:relative;}
+  .foot-contact .copyable{color:var(--foot-link);text-decoration:underline;text-underline-offset:3px;width:fit-content;cursor:pointer;}
   .foot-rights{font-size:14px;color:#cfcfcf;text-align:right;line-height:1.5;}
   #toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 22px;font-size:13px;opacity:0;transition:.3s;pointer-events:none;z-index:100;}
   #toast.show{opacity:1;transform:translateX(-50%);}
 
   @media(max-width:820px){
-    .meta{grid-template-columns:repeat(2,1fr);}
-    .cs-sec{grid-template-columns:1fr;gap:20px;}
-    .cs-sec .lbl{position:static;}
-    .more-grid{grid-template-columns:1fr;}
+    .intro-grid,.altrow,.sticky-sec,.more-grid{grid-template-columns:1fr;}
+    .altrow.flip .imgcol{order:0;}
+    .s-notes{position:static;}
+    .meta{grid-template-columns:1fr 1fr;}
+    .attrib{flex-direction:column;align-items:flex-start;}
     .foot-bottom{flex-direction:column;align-items:flex-start;}
     .foot-rights{text-align:left;}
   }
 </style>
 </head>
 <body>
+
+<!--
+  ============================================================================
+  CASE STUDY: ILGA Portugal
+  SECTION INDEX — modules present on this page, in order:
+    1. INTRO          (Option A)  header.intro — statement, lead, 2 buttons, hero, 5-cell meta
+    2. ALTERNATING    (Option B)  .altsec — 2 rows (The organization / The approach)
+    3. STICKY         (Option C)  .stickysec — Challenge: pain points + usability stats
+    4. TESTIMONIAL    (Option D)  .testi — stakeholder quote (attributed generically)
+    5. STICKY         (Option C)  .stickysec — Solution: the new information architecture
+    6. PULL-QUOTE     (Option E)  .pull — second-round result (unattributed)
+    7. MORE PROJECTS  .more — WellNest + SchoolsBuddy
+    8. FOOTER
+  Every module is self-contained: copy a whole <section>, an .altrow, an
+  .s-imgs <img>, a .meta cell, or an .mcard and paste another instance — no
+  CSS changes needed. Reorder, duplicate, or delete blocks freely.
+  ============================================================================
+-->
 
 <nav>
   <div class="wrap">
@@ -125,98 +174,140 @@
   </div>
 </nav>
 
-<div class="wrap backrow"><a href="index.html#projects" class="back">← Back to projects</a></div>
+<div class="wrap backrow"><a href="index.html#projects" class="back">&larr; Back to projects</a></div>
 
-<!-- HERO -->
-<header class="cs-hero">
+<!-- INTRO (Option A) -->
+<header class="intro">
   <div class="wrap">
-    <h1 class="cs-title">ILGA Portugal</h1>
+    <p class="tagline"><span class="t1">UX Research &amp; Accessibility</span> &middot; ILGA Portugal &middot; 2025</p>
+    <div class="intro-grid">
+      <div>
+        <h1 class="statement">Navigating shouldn't feel like <span class="dim">solving a puzzle.</span></h1>
+        <p class="lead">A six-week redesign of ILGA Portugal's website so anyone seeking information, events, or help could find it quickly and confidently &mdash; a digital home that serves a marginalized community with <b>clarity, warmth, and care.</b></p>
+        <div class="actions">
+          <a href="https://medium.com/@noorasaarelainen/designing-with-purpose-the-ilga-portugal-website-redesign-0689128c637c" target="_blank" rel="noopener" class="btn">Read full case study</a>
+          <a href="https://www.figma.com/proto/AQ755qs1PFHjOUynGGkYaI/-Final-Project--ILGA-%7C-Design-File--Deliverable-?page-id=11051%3A8848&node-id=11068-13500&viewport=1092%2C183%2C0.12&t=nKVLO1grnL2dfUKG-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=11068%3A13500&show-proto-sidebar=1" target="_blank" rel="noopener" class="btn secondary">See prototype</a>
+        </div>
+      </div>
+      <div class="intro-aside">
+        <!-- HERO IMAGE. To use video/an embed instead, swap the <img> for one of:
+             <div class="media"><video src="hero.mp4" poster="poster.jpg" muted loop playsinline controls></video></div>
+             <div class="embed"><iframe src="https://www.figma.com/embed?embed_host=share&url=YOUR_FIGMA_URL" allowfullscreen title="ILGA prototype"></iframe></div> -->
+        <img src="https://framerusercontent.com/images/mv301lcXsr0r2Amx25RDVw6MJs.png?width=900" alt="Laptop mockup showing the redesigned ILGA Portugal About Us page.">
+      </div>
+    </div>
     <div class="meta">
       <div><div class="m-label">Industry</div><div class="m-val">Non-profit civil society (NGO)</div></div>
       <div><div class="m-label">Client</div><div class="m-val">ILGA Portugal</div></div>
       <div><div class="m-label">Year</div><div class="m-val">2025</div></div>
       <div><div class="m-label">Role</div><div class="m-val">UX/UI &amp; Accessibility Design</div></div>
-      <div><div class="m-label">Timeline</div><div class="m-val">6 weeks · Part-time · Solo</div></div>
+      <div><div class="m-label">Timeline</div><div class="m-val">6 weeks &middot; Part-time &middot; Solo project</div></div>
     </div>
-    <div class="cs-mock"><img src="https://framerusercontent.com/images/mv301lcXsr0r2Amx25RDVw6MJs.png" alt="Laptop mockup of the redesigned ILGA Portugal website."></div>
   </div>
 </header>
 
-<!-- ABOUT / INTRO -->
-<section class="cs-sec">
-  <div class="lbl reveal">About</div>
-  <div class="cs-body reveal">
-    <div class="actions">
-      <a href="#" class="btn">Explore prototype</a>
-      <a href="#" class="btn secondary">GitHub</a>
+<!-- ALTERNATING (Option B) -->
+<section class="altsec">
+  <div class="wrap">
+    <div class="altrow reveal" style="margin-bottom:clamp(48px,7vw,90px)">
+      <div class="imgcol"><img src="https://framerusercontent.com/images/NSkW4BmbGztK5mLQmVhcJEwdNs.png?width=1200" alt="Before-and-after comparison of the ILGA Portugal About Us page."></div>
+      <div class="txt"><p class="kick">The organization</p><h3>Portugal's leading LGBTQIA+ advocate since 1995</h3><p>ILGA Portugal is built on three pillars &mdash; <b>political advocacy, support services, and community empowerment.</b> Yet usability testing showed that many first-time visitors couldn't grasp that mission within seconds of landing on the homepage. The work it exists to do was buried beneath internal terminology.</p></div>
     </div>
-    <p>Navigating a website shouldn't feel like solving a puzzle, yet ILGA Portugal's site created barriers for the very people it exists to support. This project reimagined the site so anyone seeking information, events, or help could find it quickly and confidently.</p>
-    <p>It began with a core question: <span class="q">How do you design a digital space that truly serves a marginalized community with clarity, warmth, and care?</span></p>
-    <p>ILGA Portugal has been the country's leading LGBTQIA+ advocacy organization since 1995, grounded in three pillars: <b>political advocacy, support services, and community empowerment.</b> Yet usability testing revealed that many first-time visitors struggled to understand ILGA's mission within seconds of landing on the homepage.</p>
-    <p>Over six weeks, I conducted stakeholder interviews, competitive benchmarking, accessibility research, and two rounds of usability testing — leading the full process from research through high-fidelity prototyping as a solo designer.</p>
-  </div>
-</section>
-
-<!-- CHALLENGE -->
-<section class="cs-sec">
-  <div class="lbl reveal">Challenge</div>
-  <div class="cs-body reveal">
-    <p>The existing website struggled with <b>information clarity and structural hierarchy.</b> In usability testing with six participants:</p>
-    <div class="metrics">
-      <div class="metric"><div class="big">67%</div><div class="cap">had never heard of ILGA before</div></div>
-      <div class="metric"><div class="big">50%</div><div class="cap">read the homepage as an employment agency</div></div>
-      <div class="metric"><div class="big">83%</div><div class="cap">struggled to find events</div></div>
-      <div class="metric"><div class="big">50%</div><div class="cap">couldn't locate resources</div></div>
-    </div>
-    <p>Participants included LGBTQIA+ community members, culturally informed allies, a user with hearing impairment, and neurodivergent participants — most of them immigrants living in Portugal, reflecting real first-time scenarios. Key pain points:</p>
-    <ul>
-      <li>No clearly labeled "Events" section, despite strong user expectation</li>
-      <li>Confusion between "Activities," "Projects," and "Programs"</li>
-      <li>Resources scattered across unclear categories</li>
-      <li>Footer preferred over the hamburger menu for visibility</li>
-      <li>Accessibility gaps: low contrast and no font resizing</li>
-    </ul>
-    <div class="quote">
-      <p>"Many people don't immediately understand what ILGA does. Our critical work is buried, and users rely on Google to find our own pages."</p>
-      <cite>— Stakeholder interview</cite>
+    <div class="altrow flip reveal">
+      <div class="imgcol"><img src="https://framerusercontent.com/images/EZWlIc0qazbksVvk2GIJXGKeIyU.png?width=1200" alt="Side-by-side comparison of the original and redesigned ILGA Portugal homepage."></div>
+      <div class="txt"><p class="kick">The approach</p><h3>Six weeks, research to hi-fi &mdash; solo</h3><p>Working alone, I led the full process: <b>stakeholder interviews, competitive benchmarking of five NGOs, accessibility research against WCAG, and two rounds of usability testing</b> &mdash; carrying the redesign from early findings through to a high-fidelity prototype.</p></div>
     </div>
   </div>
 </section>
 
-<!-- SOLUTION -->
-<section class="cs-sec">
-  <div class="lbl reveal">Solution</div>
-  <div class="cs-body reveal">
-    <p>Through stakeholder interviews, competitive analysis of five NGOs, a Nielsen heuristics evaluation, and WCAG research, one principle became clear: the site had to reflect <b>user mental models, not internal terminology.</b> I rebuilt the information architecture around five user-centered sections:</p>
-    <ul class="ia">
-      <li><strong>Homepage</strong> — communicates ILGA's mission and three pillars within seconds</li>
-      <li><strong>Events</strong> — a dedicated hub for community gatherings and campaigns</li>
-      <li><strong>Knowledge Hub</strong> — one place for resources, research, and policy</li>
-      <li><strong>Get Involved</strong> — clear pathways for volunteering and advocacy</li>
-      <li><strong>Support</strong> — direct access to legal, mental-health, and community services</li>
-    </ul>
-    <p>In a second round of testing with the redesign, results shifted sharply:</p>
-    <div class="metrics">
-      <div class="metric"><div class="big">100%</div><div class="cap">completed tasks independently</div></div>
-      <div class="metric"><div class="big">0</div><div class="cap">confusion around events or homepage purpose</div></div>
-      <div class="metric"><div class="big">2</div><div class="cap">rounds of testing, refined each time</div></div>
+<!-- STICKY (Option C) — Challenge -->
+<section class="stickysec">
+  <div class="wrap">
+    <div class="sticky-sec">
+      <div class="s-imgs reveal">
+        <img src="https://framerusercontent.com/images/dBmk3aFBYBe4AsmCCYlfE8rT9rE.png?width=1000" alt="Before-and-after views of the ILGA Portugal site navigation.">
+        <img src="https://framerusercontent.com/images/wuEBgkqs0JxE1HFRFvcTi2TllY.png?width=1000" alt="Comparison of the original and redesigned ILGA Portugal events page.">
+      </div>
+      <div class="s-notes reveal">
+        <p class="kick">Challenge</p>
+        <h3>Where first-time users got lost</h3>
+        <ul>
+          <li><b>67% had never heard of ILGA</b> &mdash; first-time visitors were the rule, not the exception.</li>
+          <li><b>50% misread the homepage</b> &mdash; as an employment agency rather than an advocacy organization.</li>
+          <li><b>83% struggled to find events</b> &mdash; there was no clearly labeled &ldquo;Events&rdquo; section.</li>
+          <li><b>Confusing labels</b> &mdash; &ldquo;Activities,&rdquo; &ldquo;Projects,&rdquo; and &ldquo;Programs&rdquo; blurred into one another.</li>
+          <li><b>Scattered resources</b> &mdash; spread across unclear categories with no central hub.</li>
+          <li><b>Accessibility gaps</b> &mdash; limited color contrast and no font resizing.</li>
+        </ul>
+      </div>
     </div>
-    <p>Accessibility ran through the whole redesign: <b>improved color contrast</b> while keeping brand identity, larger action-oriented buttons, a clearer typographic hierarchy, and consideration for dark mode, font resizing, and captioned media.</p>
-    <p>Although not yet implemented, the redesign demonstrated measurable improvement in task success, brand clarity, and navigation efficiency — and I remain in contact with ILGA leadership about bringing it to life.</p>
   </div>
 </section>
 
-<!-- MORE TO EXPLORE -->
+<!-- TESTIMONIAL (Option D) — anonymous stakeholder, attributed generically -->
+<section class="testi">
+  <div class="wrap">
+    <div class="inner reveal">
+      <svg class="qmark" viewBox="0 0 60 44" fill="currentColor" aria-hidden="true"><path d="M6 3 H26 V22 C26 33 19 40 9 42 L7 36 C13 34 16 30 16 25 H6 Z"/><path d="M34 3 H54 V22 C54 33 47 40 37 42 L35 36 C41 34 44 30 44 25 H34 Z"/></svg>
+      <blockquote>Many people don't immediately understand what ILGA does. Our critical work is buried, and users rely on Google to find our own pages.</blockquote>
+      <div class="attrib">
+        <div class="avatar ph" style="padding:0"></div>
+        <div>
+          <div class="name">ILGA stakeholder</div>
+          <div class="role">Stakeholder interview &middot; ILGA Portugal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY (Option C) — Solution -->
+<section class="stickysec">
+  <div class="wrap">
+    <div class="sticky-sec">
+      <div class="s-imgs reveal">
+        <img src="https://framerusercontent.com/images/mYAxUtcvoasUrBWUjWs7nZvFjmE.png?width=1000" alt="Redesigned ILGA Portugal resources section with a searchable database.">
+      </div>
+      <div class="s-notes reveal">
+        <p class="kick">Solution</p>
+        <h3>Five sections, built on user mental models</h3>
+        <ul>
+          <li><b>Homepage</b> &mdash; communicates ILGA's mission and three pillars within seconds.</li>
+          <li><b>Events</b> &mdash; a dedicated, intuitive hub for community gatherings and campaigns.</li>
+          <li><b>Knowledge Hub</b> &mdash; one place for resources, research, and policy documents.</li>
+          <li><b>Get Involved</b> &mdash; clear pathways for volunteering and advocacy.</li>
+          <li><b>Support</b> &mdash; direct access to legal, mental-health, and community services.</li>
+          <li><b>Accessibility throughout</b> &mdash; stronger contrast, larger action-oriented buttons, clearer type, plus dark-mode and font-resizing consideration.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PULL-QUOTE (Option E) — real result, no named source -->
+<section class="pull">
+  <div class="wrap">
+    <div class="reveal">
+      <blockquote>In a second round of testing, 100% of participants completed every task independently &mdash; and recognized ILGA's mission the moment they arrived.</blockquote>
+      <cite>Second-round usability testing with the redesign</cite>
+    </div>
+  </div>
+</section>
+
+<!-- MORE PROJECTS -->
 <section class="more">
   <div class="wrap">
-    <div class="lbl reveal">More to explore</div>
+    <div class="more-head">
+      <span class="lbl reveal">More projects</span>
+      <a href="index.html#projects" class="btn secondary reveal">Show all</a>
+    </div>
     <div class="more-grid">
-      <a class="mcard reveal" href="#">
+      <a class="mcard reveal" href="case-wellnest.html">
         <div class="mk"><img src="https://framerusercontent.com/images/6uYyfK79iiAiV15Q1IuEo80yQ.png" alt="WellNest mobile app mockup."></div>
         <h4>WellNest</h4>
         <div class="tags"><span class="tag">Product Design</span><span class="tag">Mobile UX</span><span class="tag">App</span></div>
       </a>
-      <a class="mcard reveal" href="#">
+      <a class="mcard reveal" href="case-schoolsbuddy.html">
         <div class="mk"><img src="https://framerusercontent.com/images/mdHJS0sMsOpLySMAb9AoWtVPM.png" alt="SchoolsBuddy app mockup."></div>
         <h4>SchoolsBuddy</h4>
         <div class="tags"><span class="tag">Redesign</span><span class="tag">UX Design</span><span class="tag">EdTech</span></div>
