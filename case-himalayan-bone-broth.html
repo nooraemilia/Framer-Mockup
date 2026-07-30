@@ -82,7 +82,7 @@
   .s-notes li::before{content:"";position:absolute;left:0;top:22px;width:9px;height:9px;background:var(--accent);}
   .s-notes li b{color:var(--ink);font-weight:500;}
 
-  /* ---- Testimonial (screenshot 2) ---- */
+  /* ---- Testimonial (Option D) ---- */
   .testi{padding:clamp(70px,9vw,130px) 0;}
   .testi .inner{max-width:900px;margin:0 auto;text-align:center;}
   .qmark{width:58px;height:44px;color:var(--ink);margin:0 auto 30px;}
@@ -92,6 +92,11 @@
   .attrib .avatar img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);}
   .attrib .name{font-family:var(--switzer);font-weight:600;font-size:18px;letter-spacing:.01em;text-transform:uppercase;color:var(--ink);}
   .attrib .role{font-size:14px;line-height:1.45;color:var(--label);margin-top:4px;max-width:560px;}
+
+  /* ---- Pull-quote (Option E — unattributed, use when no named source) ---- */
+  .pull{padding:clamp(50px,7vw,90px) 0;}
+  .pull blockquote{max-width:900px;margin:0 auto;text-align:center;font-family:var(--switzer);font-weight:500;font-size:clamp(20px,2.4vw,30px);line-height:1.4;letter-spacing:-.01em;color:var(--ink);}
+  .pull cite{display:block;font-style:normal;font-size:14px;color:var(--label);margin-top:20px;text-align:center;}
 
   /* ---- More projects ---- */
   .more{padding:clamp(64px,8vw,110px) 0;border-top:1px solid var(--line);}
@@ -104,6 +109,18 @@
   .mcard h4{font-family:var(--switzer);font-weight:500;font-size:clamp(24px,3.4vw,40px);letter-spacing:-.04em;color:var(--ink);margin-top:20px;}
   .mcard .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
   .mcard .tag{font-size:12px;color:var(--muted);border:1px solid #e2e2e2;padding:5px 11px;border-radius:999px;}
+
+  /* ---- Media helpers (real images / figures / video + iframe embeds) ---- */
+  /* Content images swap straight into the .ph slots. mix-blend-mode:multiply
+     hides the baked-in white backgrounds of the mockups on the paper texture
+     — remove it once transparent PNGs are available. */
+  .intro-aside img,.altrow .imgcol img,.s-imgs img{width:100%;height:auto;mix-blend-mode:multiply;}
+  figure{margin:0;}
+  figcaption{font-size:13px;line-height:1.45;color:var(--label);letter-spacing:.02em;margin-top:10px;}
+  .media{width:100%;}
+  .media video{width:100%;height:auto;display:block;}
+  .embed{position:relative;width:100%;aspect-ratio:16/9;}
+  .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0;}
 
   /* ---- Footer ---- */
   footer{background:var(--foot-bg);color:var(--foot-text);padding:clamp(70px,9vw,110px) 0 40px;}
@@ -132,6 +149,24 @@
 </head>
 <body>
 
+<!--
+  ============================================================================
+  CASE STUDY: Himalayan Bone Broth
+  SECTION INDEX — modules present on this page, in order:
+    1. INTRO          (Option A)  header.intro — statement, lead, 2 buttons (prototype = "Explore Mid-Fi Prototype"), hero, 5-cell meta
+    2. ALTERNATING    (Option B)  .altsec — 2 rows (The challenge / Who we designed for)
+    3. PULL-QUOTE     (Option E)  .pull — the project's guiding question (unattributed)
+    4. STICKY         (Option C)  .stickysec — Solution: what we built
+    5. STICKY         (Option C)  .stickysec — Testing: what users told us
+    6. MORE PROJECTS  .more — ILGA Portugal + WellNest
+    7. FOOTER
+  NOTE: No real named quote exists for this project, so the TESTIMONIAL block is
+  replaced by an unattributed PULL-QUOTE (the team's guiding question).
+  Every module is self-contained: copy a whole <section>, an .altrow, an
+  .s-imgs <img>, a .meta cell, or an .mcard and paste another instance.
+  ============================================================================
+-->
+
 <nav>
   <div class="wrap">
     <a href="index.html" class="wordmark">NOORA EMILIA</a>
@@ -144,24 +179,29 @@
 <!-- INTRO (Option A) -->
 <header class="intro">
   <div class="wrap">
-    <p class="tagline"><span class="t1">Marketing &amp; Comms</span> &middot; Himalayan Bone Broth &middot; 2018&ndash;2020</p>
+    <p class="tagline"><span class="t1">UX/UI &amp; Content Strategy</span> &middot; Himalayan Bone Broth &middot; 2024</p>
     <div class="intro-grid">
       <div>
-        <h1 class="statement">Marketing that <span class="dim">understands its market.</span></h1>
-        <p class="lead">A part-time marketing and communications role supporting Himalayan Bone Broth's international brand &mdash; spanning <b>PPC campaigns, social media, email marketing, and content creation</b>, all grounded in a strong understanding of the target audience.</p>
+        <h1 class="statement">When trust is <span class="dim">the product.</span></h1>
+        <p class="lead">A user-centered design blueprint for Himalayan Bone Broth's e-commerce platform &mdash; introducing a traditionally inspired product to health-conscious, skeptical shoppers through <b>honest information, clear navigation, and an experience that reflects the brand's values</b> of purity and reliability.</p>
         <div class="actions">
-          <a href="#" class="btn">Read full case study</a>
-          <a href="#" class="btn secondary">See prototype</a>
+          <a href="https://medium.com/@noorasaarelainen/how-can-ux-design-build-consumer-trust-2c5be02afb0f" target="_blank" rel="noopener" class="btn">Read full case study</a>
+          <a href="https://www.figma.com/proto/2A4tqQArpVAonQywmG65B7/Himalayan-Bone-Broth-%7C-Design-File?page-id=14%3A319&node-id=4307-2075&viewport=7982%2C1424%2C0.58&t=ndvRCKh1RDkzBDKj-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=4307%3A2075&show-proto-sidebar=1" target="_blank" rel="noopener" class="btn secondary">Explore Mid-Fi Prototype</a>
         </div>
       </div>
-      <div class="intro-aside"><div class="ph">Hero image</div></div>
+      <div class="intro-aside">
+        <!-- HERO IMAGE. To use video/an embed instead, swap the <img> for one of:
+             <div class="media"><video src="hero.mp4" poster="poster.jpg" muted loop playsinline controls></video></div>
+             <div class="embed"><iframe src="https://www.figma.com/embed?embed_host=share&url=YOUR_FIGMA_URL" allowfullscreen title="Himalayan Bone Broth prototype"></iframe></div> -->
+        <img src="https://framerusercontent.com/images/kOM75FtGrQk0OA3IX6MNzLS3YI.png?width=900" alt="Laptop mockup of the Himalayan Bone Broth product page.">
+      </div>
     </div>
     <div class="meta">
-      <div><div class="m-label">Industry</div><div class="m-val">Higher Education</div></div>
+      <div><div class="m-label">Industry</div><div class="m-val">Wellness Nutrition</div></div>
       <div><div class="m-label">Client</div><div class="m-val">Himalayan Bone Broth</div></div>
-      <div><div class="m-label">Year</div><div class="m-val">2018&ndash;2020</div></div>
-      <div><div class="m-label">Role</div><div class="m-val">Marketing &amp; Communications Associate / Consultant</div></div>
-      <div><div class="m-label">Timeline</div><div class="m-val">16 months part-time + short-term consulting engagement</div></div>
+      <div><div class="m-label">Year</div><div class="m-val">2024</div></div>
+      <div><div class="m-label">Role</div><div class="m-val">UX/UI Design &amp; Content Strategy</div></div>
+      <div><div class="m-label">Timeline</div><div class="m-val">5 weeks &middot; Part-time &middot; Team project</div></div>
     </div>
   </div>
 </header>
@@ -170,53 +210,65 @@
 <section class="altsec">
   <div class="wrap">
     <div class="altrow reveal" style="margin-bottom:clamp(48px,7vw,90px)">
-      <div class="imgcol"><div class="ph">Campaign / channel image</div></div>
-      <div class="txt"><p class="kick">The role</p><h3>Owning the full marketing mix</h3><p>Across a 16-month engagement I independently ran <b>PPC campaigns, social media, email marketing, and content creation</b> for the university's international audience &mdash; turning a strong read of the target market into consistent, on-brand communication.</p></div>
+      <div class="imgcol"><img src="https://framerusercontent.com/images/sz8jBwE2N3JiB4cKCdVsaJ6iA.webp?width=1200" alt="Himalayan Bone Broth product page shown on a laptop mockup."></div>
+      <div class="txt"><p class="kick">The challenge</p><h3>Trust as currency</h3><p>Many health-conscious consumers are <b>skeptical</b>: confusing marketing, vague claims, and unclear sourcing leave them unsure what they're actually putting into their bodies. The task was to design a site that felt honest, clear, and trustworthy from the first glance &mdash; because when trust is the product, small UX choices matter a lot.</p></div>
     </div>
     <div class="altrow flip reveal">
-      <div class="imgcol"><div class="ph">Content / asset image</div></div>
-      <div class="txt"><p class="kick">Approach</p><h3>Learning fast, testing faster</h3><p>New channels and briefs were treated as experiments: quick to learn, quick to ship, and measured against how well they reached prospective international students. Nothing was off-limits if it moved the numbers.</p></div>
+      <div class="imgcol"><img src="https://framerusercontent.com/images/q7z2dHecW27gV67w8zuMI4IGJg.webp?width=1200" alt="Persona card for Ricardo, a wellness-oriented shopper."></div>
+      <div class="txt"><p class="kick">Who we designed for</p><h3>Meet Ricardo</h3><p>We interviewed people with healthy lifestyles and wellness-oriented values from different backgrounds and geographies &mdash; all sharing a demand for transparency around ingredients, sourcing, and health claims. From them we built the persona <b>Ricardo</b> and mapped his journey from discovering the product to making a confident purchase.</p></div>
     </div>
   </div>
 </section>
 
-<!-- STICKY (Option C) -->
+<!-- PULL-QUOTE (Option E) — the guiding question, no named source -->
+<section class="pull">
+  <div class="wrap">
+    <div class="reveal">
+      <blockquote>How can we design a site that feels honest, clear, and trustworthy &mdash; from the very first glance?</blockquote>
+      <cite>The project's guiding question</cite>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY (Option C) — Solution -->
 <section class="stickysec">
   <div class="wrap">
     <div class="sticky-sec">
       <div class="s-imgs reveal">
-        <div class="ph">PPC dashboard</div>
-        <div class="ph">Social media feed</div>
-        <div class="ph">Email campaign</div>
-        <div class="ph">Content assets</div>
+        <img src="https://framerusercontent.com/images/t7V8qB7sgN5zQ2bV2A1gT56u5q8.png?width=1000" alt="User flow diagram from browsing to purchase.">
+        <img src="https://framerusercontent.com/images/LFWkeFXf5FczPNexm7eXIvC1inQ.webp?width=1000" alt="Sitemap diagram for the Himalayan Bone Broth website.">
       </div>
       <div class="s-notes reveal">
-        <p class="kick">Deliverables</p>
-        <h3>What I delivered</h3>
+        <p class="kick">Solution</p>
+        <h3>Designing for honesty</h3>
         <ul>
-          <li><b>PPC campaigns</b> &mdash; planned, launched, and optimised paid search and social ads.</li>
-          <li><b>Social media</b> &mdash; content calendars and community management across channels.</li>
-          <li><b>Email marketing</b> &mdash; segmented campaigns for prospective and current students.</li>
-          <li><b>Content creation</b> &mdash; copy, visuals, and assets aligned to the brand.</li>
-          <li><b>Market focus</b> &mdash; every decision anchored in the target audience.</li>
+          <li><b>A clear sitemap</b> &mdash; content organized logically, avoiding clutter or misleading category names.</li>
+          <li><b>Guided user flows</b> &mdash; leading from browsing to purchase without overwhelming, giving users time to digest.</li>
+          <li><b>Honest UX writing</b> &mdash; straightforward ingredient and benefit descriptions, with no misleading claims.</li>
+          <li><b>A clean aesthetic</b> &mdash; readability first, reducing cognitive load so users feel grounded rather than overwhelmed.</li>
         </ul>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TESTIMONIAL (screenshot 2) -->
-<section class="testi">
+<!-- STICKY (Option C) — Testing -->
+<section class="stickysec">
   <div class="wrap">
-    <div class="inner reveal">
-      <svg class="qmark" viewBox="0 0 60 44" fill="currentColor" aria-hidden="true"><path d="M6 3 H26 V22 C26 33 19 40 9 42 L7 36 C13 34 16 30 16 25 H6 Z"/><path d="M34 3 H54 V22 C54 33 47 40 37 42 L35 36 C41 34 44 30 44 25 H34 Z"/></svg>
-      <blockquote>Noora independently managed PPC campaigns, social media, email marketing, and content creation while maintaining a strong understanding of the target market. She is quick to learn and never shies away from a challenge.</blockquote>
-      <div class="attrib">
-        <div class="avatar ph" style="padding:0"></div>
-        <div>
-          <div class="name">Luca Utassy</div>
-          <div class="role">International Marketing Manager &amp; Head of International Marketing and Event Management Office, Himalayan Bone Broth</div>
-        </div>
+    <div class="sticky-sec">
+      <div class="s-imgs reveal">
+        <img src="https://framerusercontent.com/images/eFMtdhXjY6jFmcCigFIEQzJZLo.png?width=1000" alt="Low-fidelity wireframes for the Himalayan Bone Broth site.">
+        <img src="https://framerusercontent.com/images/TkNj79XgVPxsVGPi4tGBlBgRNo.png?width=1000" alt="Mid-fidelity screens for the Himalayan Bone Broth site.">
+      </div>
+      <div class="s-notes reveal">
+        <p class="kick">Testing</p>
+        <h3>What users told us</h3>
+        <ul>
+          <li><b>Open and clear</b> &mdash; testers described the site as honest and easy to trust.</li>
+          <li><b>Everything within reach</b> &mdash; they appreciated easy access to all the relevant information.</li>
+          <li><b>A straightforward path</b> &mdash; a clear route from browsing to a confident purchase.</li>
+          <li><b>Inform, don't push</b> &mdash; the design empowers users to decide independently, respecting their skepticism and valuing their need for clarity.</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -235,7 +287,7 @@
         <h4>ILGA Portugal</h4>
         <div class="tags"><span class="tag">UX Research</span><span class="tag">Accessibility</span><span class="tag">Website</span></div>
       </a>
-      <a class="mcard reveal" href="#">
+      <a class="mcard reveal" href="case-wellnest.html">
         <div class="mk"><img src="https://framerusercontent.com/images/6uYyfK79iiAiV15Q1IuEo80yQ.png" alt="WellNest app mockup."></div>
         <h4>WellNest</h4>
         <div class="tags"><span class="tag">Product Design</span><span class="tag">Mobile UX</span><span class="tag">App</span></div>
