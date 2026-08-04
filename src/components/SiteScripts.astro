@@ -60,28 +60,32 @@
     },{passive:true});
   })();
 
-  // 5. solutionHighlight — one item/screen is "active" at a time: the screen
-  //    whose centre is crossing the viewport's vertical centre. Driven by an
-  //    IntersectionObserver whose root is squeezed to a 1px centre line via
-  //    rootMargin. DOM writes are batched in rAF; the highlight is visual only,
-  //    so nothing here is required for the content to make sense.
+  // 5. solutionHighlight — the screen whose centre is crossing the viewport's
+  //    vertical centre is "active"; so is the bullet that owns it. One bullet
+  //    can own several screens, so the active screen changes each time a new one
+  //    reaches the centre while the active bullet only moves when that screen
+  //    belongs to a different item. Driven by an IntersectionObserver whose root
+  //    is squeezed to a 1px centre line via rootMargin. DOM writes are batched
+  //    in rAF; the highlight is visual only, so the content stands on its own.
   document.querySelectorAll('[data-solhi]').forEach(function(sec){
     var screens=[].slice.call(sec.querySelectorAll('[data-solhi-screen]'));
     var items=[].slice.call(sec.querySelectorAll('[data-solhi-item]'));
     if(!screens.length){return;}
 
-    var active=-1, raf=0;
-    function apply(i){
-      if(i===active){return;}
-      active=i;
+    var activeScreen=-1, activeItem=-1, raf=0;
+    function apply(screenIdx){
+      if(screenIdx===activeScreen){return;}
+      activeScreen=screenIdx;
+      var el=screens[screenIdx];
+      activeItem=el?+el.getAttribute('data-item'):-1;
       if(raf){return;}
       raf=requestAnimationFrame(function(){
         raf=0;
-        screens.forEach(function(el,n){el.classList.toggle('active',n===active);});
-        items.forEach(function(el,n){el.classList.toggle('active',n===active);});
+        screens.forEach(function(s,n){s.classList.toggle('active',n===activeScreen);});
+        items.forEach(function(li,n){li.classList.toggle('active',n===activeItem);});
       });
     }
-    apply(0); // first row lit before any scrolling
+    apply(0); // first screen + its bullet lit before any scrolling
 
     if(!('IntersectionObserver' in window)){return;}
     // Root shrunk to a 1px band at the vertical centre: whatever screen overlaps

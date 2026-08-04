@@ -113,53 +113,51 @@ export default {
       },
     },
     {
-      // Scroll-linked solution module. Each item pairs one bullet with one phone
-      // screen — duplicate an entry to add a row, reorder the array to reorder.
-      // Screens live in /public (adjust these paths to your real filenames).
+      // Scroll-linked solution module. Each item owns one OR MORE screens via
+      // `images:[…]` — every screen in an item keeps that bullet lit while it
+      // passes the viewport centre, so you can add several screens to one bullet
+      // without the highlight jumping ahead. A very long screen can be marked
+      // `tall: true` to render at full height (the Home feed below).
+      // Screens live in /public/wellnest — add the PNGs named here (see the
+      // README in that folder for which screenshot maps to which file).
       type: 'solutionHighlight',
       kick: 'What we built',
       heading: 'Tools that guide without overwhelming',
       items: [
         {
-          bold: 'Identity-based groups',
-          text: " — support spaces that actually feel like the survivor's own.",
-          image: {
-            src: '/wellnest/08-community-groups.png',
-            alt: 'WellNest community groups screen listing identity-based support spaces.',
-          },
+          bold: "Support that's always in reach",
+          text: ' — emergency numbers and vetted wellness apps gathered in one calm place, for the moments between appointments.',
+          images: [
+            { src: '/wellnest/01-support.png', alt: 'WellNest Support screen with emergency numbers and recommended wellness apps.' },
+          ],
         },
         {
-          bold: 'Private messaging',
-          text: ' — one-to-one connection with people who understand.',
-          image: {
-            src: '/wellnest/15-community-chat.png',
-            alt: 'WellNest one-to-one private chat conversation.',
-          },
+          bold: 'Stories from people who get it',
+          text: ' — articles from fellow survivors and trusted professionals, tackling the real questions of life after treatment.',
+          images: [
+            { src: '/wellnest/02-articles.png', alt: 'WellNest Articles screen filtering stories by fellow survivors and trusted professionals.' },
+          ],
         },
         {
-          bold: 'Daily check-ins',
-          text: ' — friendly mood tracking, reworded to feel human rather than clinical.',
-          image: {
-            src: '/wellnest/14-journey-checkin.png',
-            alt: 'WellNest daily mood check-in with friendly, human wording.',
-          },
+          bold: 'Check-ins on your own terms',
+          text: ' — gentle, optional tracking for mood, sleep, and energy, reworded to feel human rather than like a medical chart.',
+          images: [
+            { src: '/wellnest/03-my-journey.png', alt: 'WellNest My Journey screen with a Daily check-in and mood, sleep and energy tracking cards.' },
+          ],
         },
         {
-          // PLACEHOLDER — swap for a dedicated reflection screen when it exists.
-          bold: 'A reflection space',
-          text: ' — a personal, private place to process the emotional world.',
-          image: {
-            src: '/wellnest/13-support-articles.png',
-            alt: 'WellNest support articles screen, standing in for the reflection space.',
-          },
+          bold: "A feed that says you're not alone",
+          text: ' — everyday posts and journeys from your groups, so connection is the first thing you see.',
+          images: [
+            { src: '/wellnest/04-home-feed.png', alt: 'WellNest Home feed of community posts and survivor journeys.', tall: true },
+          ],
         },
         {
-          bold: 'Five core sections',
-          text: ' — an intentionally simple information architecture that keeps cognitive load low.',
-          image: {
-            src: '/wellnest/12-support-hub.png',
-            alt: 'WellNest support hub showing the five core sections of the app.',
-          },
+          bold: 'Groups that match where you are now',
+          text: ' — filter by cancer type, age, and location to find people whose experience actually mirrors yours.',
+          images: [
+            { src: '/wellnest/05-groups.png', alt: 'WellNest Connect & share screen recommending groups filtered by cancer type, age and location.' },
+          ],
         },
       ],
     },

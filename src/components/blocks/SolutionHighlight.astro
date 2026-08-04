@@ -4,30 +4,54 @@
 //   • LEFT  — a vertical gallery of phone screens in normal flow (scrolls
 //             bottom→top with the page).
 //   • RIGHT — a sticky, vertically-centred column: kick + heading + a list.
-// As the gallery scrolls, exactly one item is "active" — the one whose screen
-// is centred in the viewport. Item and screen are emphasised together.
+// As the gallery scrolls, exactly one list item is "active" — the one whose
+// screen is centred in the viewport — and that screen is emphasised too.
 //
-// Each `items` entry pairs ONE list bullet with ONE phone screen, so the
-// item→screen mapping is a single content line. Duplicate an entry to add a
-// row; remove one to drop it. Reordering is just reordering the array.
+// One bullet can own MANY screens. Each `items` entry carries `images:[…]`;
+// every screen in that array keeps the SAME bullet lit while it passes the
+// centre, so e.g. three screens can scroll past before the active bullet moves
+// on to the next item. A single very tall screen behaves the same way — it
+// stays on its bullet for its whole height (mark it `tall:true` so it renders
+// at full height instead of being capped).
 //
-// { kick, heading, items:[{ bold, text, image:{src,alt} | ph }] }
+// { kick, heading, items:[{ bold, text,
+//     images:[{src,alt,tall?}]   // preferred — one or many screens per bullet
+//     image:{src,alt,tall?}      // shorthand for a single screen
+//     ph?                        // placeholder label when no screen yet
+//   }] }
 const { kick, heading, items = [] } = Astro.props.block;
+
+// Flatten items → a single ordered list of screens, each tagged with the index
+// of the bullet it belongs to. `flat` drives the gallery; `items` drives the list.
+const screens = [];
+items.forEach((it, itemIndex) => {
+  const imgs = it.images && it.images.length ? it.images : it.image ? [it.image] : [];
+  if (imgs.length) {
+    imgs.forEach((img) => screens.push({ img, itemIndex }));
+  } else {
+    screens.push({ img: null, ph: it.ph || '', itemIndex });
+  }
+});
 ---
 <section class="solhisec" data-solhi>
   <div class="wrap">
     <div class="solhi-grid">
       <div class="solhi-gallery">
-        {items.map((it, i) => (
-          <figure class="solhi-screen" data-solhi-screen data-index={i}>
-            {it.image && it.image.src
+        {screens.map((s, i) => (
+          <figure
+            class:list={['solhi-screen', { 'is-tall': s.img && s.img.tall }]}
+            data-solhi-screen
+            data-index={i}
+            data-item={s.itemIndex}
+          >
+            {s.img && s.img.src
               ? <img
-                  src={it.image.src}
-                  alt={it.image.alt || ''}
+                  src={s.img.src}
+                  alt={s.img.alt || ''}
                   loading="lazy"
                   onerror="this.closest('.solhi-screen').classList.add('is-missing')"
                 />
-              : <div class="solhi-ph">{it.ph || ''}</div>}
+              : <div class="solhi-ph">{s.ph || ''}</div>}
           </figure>
         ))}
       </div>

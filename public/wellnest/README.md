@@ -5,15 +5,23 @@ Drop the WellNest phone screenshots here. They are used by the
 (`src/data/caseStudies/wellnest.js`, the "Tools that guide without
 overwhelming" section).
 
-Files referenced by the case study (add PNGs with these exact names):
+Add PNGs with these exact names (portrait screenshots look best):
 
-| File                      | Item it lights up      |
-| ------------------------- | ---------------------- |
-| `08-community-groups.png` | Identity-based groups  |
-| `15-community-chat.png`   | Private messaging      |
-| `14-journey-checkin.png`  | Daily check-ins        |
-| `13-support-articles.png` | A reflection space (placeholder — swap for a real reflection screen) |
-| `12-support-hub.png`      | Five core sections     |
+| File                   | Screenshot to export           | Bullet it lights up                     |
+| ---------------------- | ------------------------------ | --------------------------------------- |
+| `01-support.png`       | **Support** screen             | Support that's always in reach          |
+| `02-articles.png`      | **Articles** screen            | Stories from people who get it          |
+| `03-my-journey.png`    | **My Journey / Daily check-in**| Check-ins on your own terms             |
+| `04-home-feed.png`     | **Home feed** (the long one)   | A feed that says you're not alone       |
+| `05-groups.png`        | **Connect & share / Groups**   | Groups that match where you are now     |
 
-Until a file exists, the block shows a subtle dashed phone-shaped placeholder
-in its slot (no broken-image icon). Portrait screenshots look best.
+Notes:
+- **`04-home-feed.png` is the tall one.** It's marked `tall: true` in the data,
+  so it renders at full height and scrolls through the centre on its own bullet —
+  the "A feed…" item stays active for the whole length of the image.
+- One bullet can own **several** screens: in the data give that item an
+  `images: [ … ]` array with more than one entry. Each screen keeps the same
+  bullet lit while it passes the viewport centre, so (say) three screens can
+  scroll by before the active bullet advances.
+- Until a file exists, its slot shows a subtle dashed phone-shaped placeholder
+  (no broken-image icon), so the section still looks intentional.

@@ -114,7 +114,7 @@ simple `<b>bold</b>` tags.
 | `intro`         | `tagline:{t1,rest}`, `statement:{text,dim?}`, `lead`_(html)_, `buttons:[{label,href,style?}]`, `meta:[{label,value}]`, `hero:{src,alt}` **or** `{ph:'Hero image'}` |
 | `alternating`   | `side:'left'|'right'` (image side), `kick`, `title`_(html)_, `body`_(html)_, `image:{src,alt}` **or** `{ph:'label'}` |
 | `sticky`        | `kick`, `heading`, `bullets:[{bold,text}]`, `images:[{src,caption}]` **or** `[{ph:'label'}]` |
-| `solutionHighlight` | `kick`, `heading`, `items:[{bold,text,image:{src,alt}}]` — a scroll-linked version of `sticky` (see below) |
+| `solutionHighlight` | `kick`, `heading`, `items:[{bold,text,images:[{src,alt,tall?}]}]` — a scroll-linked version of `sticky` (see below) |
 | `testimonial`   | `quote`, `name`, `role`, `avatar:{src,alt}` **or** `null` (gray circle) |
 | `pullQuote`     | `quote`_(html)_, `cite` — a **light**, centered quote (a guiding question / a result) |
 | `bigQuote`      | `quote`_(html)_, `attribution` — a **full-bleed dark** band |
@@ -139,9 +139,8 @@ time** — the one whose screen is centred in the viewport — and its matching
 screen is emphasised in sync (the rest dim). On narrow screens it stacks to one
 column and the highlight becomes static.
 
-The key difference from `sticky`: each `items` entry **pairs one bullet with one
-screen**, so the item→screen mapping is a single content line. To add a row,
-duplicate an `items` entry; to reorder, reorder the array. Example:
+Each `items` entry has a bullet **and its screens**. To add a row, duplicate an
+`items` entry; to reorder, reorder the array. Example:
 
 ```js
 {
@@ -150,19 +149,32 @@ duplicate an `items` entry; to reorder, reorder the array. Example:
   heading: 'Tools that guide without overwhelming',
   items: [
     {
-      bold: 'Identity-based groups',
-      text: ' — support spaces that feel like the survivor\'s own.',
-      image: { src: '/wellnest/08-community-groups.png', alt: 'Community groups screen.' },
+      bold: 'Support that\'s always in reach',
+      text: ' — emergency numbers and vetted wellness apps in one calm place.',
+      images: [
+        { src: '/wellnest/01-support.png', alt: 'Support screen.' },
+      ],
     },
     // …duplicate this object for each additional row
   ],
 }
 ```
 
+**One bullet can own several screens.** Give an item more than one entry in its
+`images: [ … ]` array and every screen keeps that bullet lit while it passes the
+viewport centre — so three screens can scroll by before the highlight moves on
+to the next bullet. (`image: {…}` is still accepted as shorthand for a single
+screen.)
+
+**A very long screen** (e.g. a scrolling Home feed) can be marked
+`tall: true` on its image object — it then renders at full height and scrolls
+through the centre on its own bullet instead of being height-capped.
+
 Screens go in `public/` (referenced by an absolute path like
-`/wellnest/08-community-groups.png`). Until a file exists the block shows a
-subtle dashed phone-shaped placeholder — no broken-image icon. It honours
-`prefers-reduced-motion` (keeps only the colour highlight, drops the scaling).
+`/wellnest/01-support.png`). Until a file exists the block shows a subtle
+dashed phone-shaped placeholder — no broken-image icon. It honours
+`prefers-reduced-motion` (keeps only the colour highlight, drops the scaling)
+and stacks to one static column below 860px.
 
 ### `pullQuote` vs `bigQuote`
 The original ILGA and Himalayan pages use a **light** centered quote — that's
