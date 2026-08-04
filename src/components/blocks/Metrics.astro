@@ -1,0 +1,18 @@
+---
+// BLOCK: metrics  (stat numbers in the accent yellow)
+// { intro, items:[{big,cap}] }
+const { intro, items = [] } = Astro.props.block;
+---
+<section class="metricssec">
+  <div class="wrap">
+    {intro && <p class="m-intro reveal" set:html={intro}></p>}
+    <div class="metrics-grid reveal">
+      {items.map((it) => (
+        <div class="metric">
+          <div class="big">{it.big}</div>
+          <div class="cap" set:html={it.cap}></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

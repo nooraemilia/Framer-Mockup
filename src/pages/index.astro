@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import Projects from '../components/home/Projects.astro';
+import About from '../components/home/About.astro';
+import Accordion from '../components/home/Accordion.astro';
+import Timeline from '../components/home/Timeline.astro';
+---
+<BaseLayout
+  title="NOORA EMILIA Portfolio"
+  description="UX/UI Product Designer & Researcher blending curiosity, empathy, and research into accessible experiences."
+  bodyClass="page-home"
+>
+  <Hero />
+  <Projects />
+  <About />
+  <Accordion />
+  <Timeline />
+</BaseLayout>

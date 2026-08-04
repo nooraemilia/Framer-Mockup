@@ -1,0 +1,22 @@
+---
+// BLOCK: testimonial
+// { quote, name, role, avatar:{src,alt} | null (gray placeholder) }
+const { quote, name, role, avatar } = Astro.props.block;
+---
+<section class="testi">
+  <div class="wrap">
+    <div class="inner reveal">
+      <svg class="qmark" viewBox="0 0 60 44" fill="currentColor" aria-hidden="true"><path d="M6 3 H26 V22 C26 33 19 40 9 42 L7 36 C13 34 16 30 16 25 H6 Z"/><path d="M34 3 H54 V22 C54 33 47 40 37 42 L35 36 C41 34 44 30 44 25 H34 Z"/></svg>
+      <blockquote>{quote}</blockquote>
+      <div class="attrib">
+        {avatar && avatar.src
+          ? <div class="avatar"><img src={avatar.src} alt={avatar.alt} /></div>
+          : <div class="avatar ph" style="padding:0"></div>}
+        <div>
+          <div class="name">{name}</div>
+          <div class="role">{role}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

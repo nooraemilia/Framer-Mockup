@@ -1,0 +1,13 @@
+---
+// BLOCK: divider  (oversized chapter word between sections)
+// { word, caption } — `word` may contain a <span class="dim">…</span> tail.
+const { word, caption } = Astro.props.block;
+---
+<section class="dividersec">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="word" set:html={word}></div>
+      {caption && <p class="caption">{caption}</p>}
+    </div>
+  </div>
+</section>

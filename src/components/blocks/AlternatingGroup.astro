@@ -1,0 +1,24 @@
+---
+// BLOCK: alternating (consecutive `alternating` blocks are grouped into one
+// .altsec so the vertical rhythm matches the hand-built pages exactly).
+// Each row: { side:"left"|"right" (image side), kick, title, body(html), image:{src,alt}|{ph} }
+const { rows = [] } = Astro.props;
+---
+<section class="altsec">
+  <div class="wrap">
+    {rows.map((r) => (
+      <div class={r.side === 'right' ? 'altrow flip reveal' : 'altrow reveal'}>
+        <div class="imgcol">
+          {r.image && r.image.src
+            ? <img src={r.image.src} alt={r.image.alt} />
+            : <div class="ph">{(r.image && r.image.ph) || 'Image'}</div>}
+        </div>
+        <div class="txt">
+          <p class="kick">{r.kick}</p>
+          <h3 set:html={r.title}></h3>
+          <p set:html={r.body}></p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

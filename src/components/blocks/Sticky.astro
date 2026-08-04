@@ -1,0 +1,27 @@
+---
+// BLOCK: sticky
+// { kick, heading, bullets:[{bold,text}], images:[{src,caption}|{ph}] }
+const { kick, heading, bullets = [], images = [] } = Astro.props.block;
+---
+<section class="stickysec">
+  <div class="wrap">
+    <div class="sticky-sec">
+      <div class="s-imgs reveal">
+        {images.map((im) => (
+          im.src
+            ? <img src={im.src} alt={im.caption || ''} />
+            : <div class="ph">{im.ph || ''}</div>
+        ))}
+      </div>
+      <div class="s-notes reveal">
+        <p class="kick">{kick}</p>
+        <h3>{heading}</h3>
+        <ul>
+          {bullets.map((b) => (
+            <li><b>{b.bold}</b>{b.text}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

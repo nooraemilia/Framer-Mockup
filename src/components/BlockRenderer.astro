@@ -1,0 +1,43 @@
+---
+// Renders an ordered list of blocks. Each block is { type, ...fields }.
+// Consecutive `alternating` blocks are collapsed into a single .altsec so the
+// spacing matches the hand-built pages (two rows share one section).
+import Intro from './blocks/Intro.astro';
+import AlternatingGroup from './blocks/AlternatingGroup.astro';
+import Sticky from './blocks/Sticky.astro';
+import Testimonial from './blocks/Testimonial.astro';
+import PullQuote from './blocks/PullQuote.astro';
+import BigQuote from './blocks/BigQuote.astro';
+import Divider from './blocks/Divider.astro';
+import Metrics from './blocks/Metrics.astro';
+import MoreProjects from './blocks/MoreProjects.astro';
+
+const { blocks = [] } = Astro.props;
+
+// Group runs of consecutive `alternating` blocks together.
+const groups = [];
+for (const block of blocks) {
+  const last = groups[groups.length - 1];
+  if (block.type === 'alternating' && last && last.type === 'alternating') {
+    last.rows.push(block);
+  } else if (block.type === 'alternating') {
+    groups.push({ type: 'alternating', rows: [block] });
+  } else {
+    groups.push(block);
+  }
+}
+---
+{groups.map((g) => {
+  switch (g.type) {
+    case 'intro':        return <Intro block={g} />;
+    case 'alternating':  return <AlternatingGroup rows={g.rows} />;
+    case 'sticky':       return <Sticky block={g} />;
+    case 'testimonial':  return <Testimonial block={g} />;
+    case 'pullQuote':    return <PullQuote block={g} />;
+    case 'bigQuote':     return <BigQuote block={g} />;
+    case 'divider':      return <Divider block={g} />;
+    case 'metrics':      return <Metrics block={g} />;
+    case 'moreProjects': return <MoreProjects block={g} />;
+    default:             return null;
+  }
+})}

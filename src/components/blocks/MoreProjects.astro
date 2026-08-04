@@ -1,0 +1,24 @@
+---
+// BLOCK: moreProjects
+// { projects:[{title, tags:[], image:{src,alt}, href}], showAllHref }
+const { projects = [], showAllHref = '/#projects' } = Astro.props.block;
+---
+<section class="more">
+  <div class="wrap">
+    <div class="more-head">
+      <span class="lbl reveal">More projects</span>
+      <a href={showAllHref} class="btn secondary reveal">Show all</a>
+    </div>
+    <div class="more-grid">
+      {projects.map((p) => (
+        <a class="mcard reveal" href={p.href}>
+          <div class="mk"><img src={p.image.src} alt={p.image.alt} /></div>
+          <h4>{p.title}</h4>
+          <div class="tags">
+            {p.tags.map((t) => <span class="tag">{t}</span>)}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

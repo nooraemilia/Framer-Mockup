@@ -1,0 +1,61 @@
+---
+// All page behaviour, ported verbatim from the hand-built HTML and merged into
+// one script that is safe on every page (queries are no-ops when a section is
+// absent). Kept inline so it runs at end-of-body exactly like the originals.
+//   1. reveal-on-scroll (IntersectionObserver) + 4s safety net + reduced-motion
+//   2. copy-to-clipboard with toast
+//   3. accordion (homepage only)
+//   4. nav hide-on-scroll-down / show-on-scroll-up
+---
+<script is:inline>
+  // 1. Reveal on scroll — content is only hidden once JS confirms the observer.
+  (function(){
+    var els=[].slice.call(document.querySelectorAll('.reveal,.ink-reveal'));
+    function showAll(){els.forEach(function(el){el.classList.add('in');});}
+    try{
+      if(!('IntersectionObserver' in window)){return;}
+      document.documentElement.classList.add('js-reveal');
+      var io=new IntersectionObserver(function(entries){
+        entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+      },{threshold:0.08});
+      els.forEach(function(el){io.observe(el);});
+      setTimeout(showAll,4000);
+    }catch(e){showAll();}
+  })();
+
+  // 2. Copy to clipboard + toast (email / phone numbers).
+  document.querySelectorAll('.copyable').forEach(function(c){
+    function copy(){
+      if(navigator.clipboard){navigator.clipboard.writeText(c.getAttribute('data-copy'));}
+      var t=document.getElementById('toast');
+      if(!t){return;}
+      t.classList.add('show');setTimeout(function(){t.classList.remove('show');},1600);
+    }
+    c.addEventListener('click',copy);
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();copy();}});
+  });
+
+  // 3. Accordion (present on the homepage only).
+  document.querySelectorAll('.acc-item').forEach(function(item){
+    item.addEventListener('click',function(){
+      var open=item.classList.toggle('open');
+      var btn=item.querySelector('.acc-head');
+      if(btn){btn.setAttribute('aria-expanded',open?'true':'false');}
+    });
+  });
+
+  // 4. Nav hides on scroll-down, returns on scroll-up.
+  (function(){
+    var nav=document.querySelector('nav');
+    if(!nav){return;}
+    var hero=document.querySelector('.hero');
+    var threshold=hero?Math.max(hero.offsetHeight-80,300):400;
+    var last=window.pageYOffset;
+    window.addEventListener('scroll',function(){
+      var y=window.pageYOffset;
+      if(y>last && y>threshold){nav.classList.add('nav-hidden');}
+      else if(y<last){nav.classList.remove('nav-hidden');}
+      last=y;
+    },{passive:true});
+  })();
+</script>
