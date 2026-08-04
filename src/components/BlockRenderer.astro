@@ -5,6 +5,7 @@
 import Intro from './blocks/Intro.astro';
 import AlternatingGroup from './blocks/AlternatingGroup.astro';
 import Sticky from './blocks/Sticky.astro';
+import SolutionHighlight from './blocks/SolutionHighlight.astro';
 import Testimonial from './blocks/Testimonial.astro';
 import PullQuote from './blocks/PullQuote.astro';
 import BigQuote from './blocks/BigQuote.astro';
@@ -32,6 +33,7 @@ for (const block of blocks) {
     case 'intro':        return <Intro block={g} />;
     case 'alternating':  return <AlternatingGroup rows={g.rows} />;
     case 'sticky':       return <Sticky block={g} />;
+    case 'solutionHighlight': return <SolutionHighlight block={g} />;
     case 'testimonial':  return <Testimonial block={g} />;
     case 'pullQuote':    return <PullQuote block={g} />;
     case 'bigQuote':     return <BigQuote block={g} />;

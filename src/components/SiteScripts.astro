@@ -6,6 +6,7 @@
 //   2. copy-to-clipboard with toast
 //   3. accordion (homepage only)
 //   4. nav hide-on-scroll-down / show-on-scroll-up
+//   5. solutionHighlight — scroll-linked active item/screen (IntersectionObserver)
 ---
 <script is:inline>
   // 1. Reveal on scroll — content is only hidden once JS confirms the observer.
@@ -58,4 +59,42 @@
       last=y;
     },{passive:true});
   })();
+
+  // 5. solutionHighlight — the screen whose centre is crossing the viewport's
+  //    vertical centre is "active"; so is the bullet that owns it. One bullet
+  //    can own several screens, so the active screen changes each time a new one
+  //    reaches the centre while the active bullet only moves when that screen
+  //    belongs to a different item. Driven by an IntersectionObserver whose root
+  //    is squeezed to a 1px centre line via rootMargin. DOM writes are batched
+  //    in rAF; the highlight is visual only, so the content stands on its own.
+  document.querySelectorAll('[data-solhi]').forEach(function(sec){
+    var screens=[].slice.call(sec.querySelectorAll('[data-solhi-screen]'));
+    var items=[].slice.call(sec.querySelectorAll('[data-solhi-item]'));
+    if(!screens.length){return;}
+
+    var activeScreen=-1, activeItem=-1, raf=0;
+    function apply(screenIdx){
+      if(screenIdx===activeScreen){return;}
+      activeScreen=screenIdx;
+      var el=screens[screenIdx];
+      activeItem=el?+el.getAttribute('data-item'):-1;
+      if(raf){return;}
+      raf=requestAnimationFrame(function(){
+        raf=0;
+        screens.forEach(function(s,n){s.classList.toggle('active',n===activeScreen);});
+        items.forEach(function(li,n){li.classList.toggle('active',n===activeItem);});
+      });
+    }
+    apply(0); // first screen + its bullet lit before any scrolling
+
+    if(!('IntersectionObserver' in window)){return;}
+    // Root shrunk to a 1px band at the vertical centre: whatever screen overlaps
+    // that band is the active one.
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){apply(+e.target.getAttribute('data-index'));}
+      });
+    },{rootMargin:'-50% 0px -50% 0px',threshold:0});
+    screens.forEach(function(el){io.observe(el);});
+  });
 </script>
