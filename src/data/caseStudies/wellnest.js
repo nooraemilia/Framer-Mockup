@@ -113,21 +113,54 @@ export default {
       },
     },
     {
-      type: 'sticky',
+      // Scroll-linked solution module. Each item pairs one bullet with one phone
+      // screen — duplicate an entry to add a row, reorder the array to reorder.
+      // Screens live in /public (adjust these paths to your real filenames).
+      type: 'solutionHighlight',
       kick: 'What we built',
       heading: 'Tools that guide without overwhelming',
-      images: [
+      items: [
         {
-          src: 'https://framerusercontent.com/images/NGLRL3SjR9tyNqHLXUDokL80nDE.png?width=1000',
-          caption: 'WellNest core support features: Messages, Articles, and Support screens.',
+          bold: 'Identity-based groups',
+          text: " — support spaces that actually feel like the survivor's own.",
+          image: {
+            src: '/wellnest/08-community-groups.png',
+            alt: 'WellNest community groups screen listing identity-based support spaces.',
+          },
         },
-      ],
-      bullets: [
-        { bold: 'Identity-based groups', text: " — support spaces that actually feel like the survivor's own." },
-        { bold: 'Private messaging', text: ' — one-to-one connection with people who understand.' },
-        { bold: 'Daily check-ins', text: ' — friendly mood tracking, reworded to feel human rather than clinical.' },
-        { bold: 'A reflection space', text: ' — a personal, private place to process the emotional world.' },
-        { bold: 'Five core sections', text: ' — an intentionally simple information architecture that keeps cognitive load low.' },
+        {
+          bold: 'Private messaging',
+          text: ' — one-to-one connection with people who understand.',
+          image: {
+            src: '/wellnest/15-community-chat.png',
+            alt: 'WellNest one-to-one private chat conversation.',
+          },
+        },
+        {
+          bold: 'Daily check-ins',
+          text: ' — friendly mood tracking, reworded to feel human rather than clinical.',
+          image: {
+            src: '/wellnest/14-journey-checkin.png',
+            alt: 'WellNest daily mood check-in with friendly, human wording.',
+          },
+        },
+        {
+          // PLACEHOLDER — swap for a dedicated reflection screen when it exists.
+          bold: 'A reflection space',
+          text: ' — a personal, private place to process the emotional world.',
+          image: {
+            src: '/wellnest/13-support-articles.png',
+            alt: 'WellNest support articles screen, standing in for the reflection space.',
+          },
+        },
+        {
+          bold: 'Five core sections',
+          text: ' — an intentionally simple information architecture that keeps cognitive load low.',
+          image: {
+            src: '/wellnest/12-support-hub.png',
+            alt: 'WellNest support hub showing the five core sections of the app.',
+          },
+        },
       ],
     },
     {

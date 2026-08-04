@@ -6,6 +6,7 @@
 //   2. copy-to-clipboard with toast
 //   3. accordion (homepage only)
 //   4. nav hide-on-scroll-down / show-on-scroll-up
+//   5. solutionHighlight — scroll-linked active item/screen (IntersectionObserver)
 ---
 <script is:inline>
   // 1. Reveal on scroll — content is only hidden once JS confirms the observer.
@@ -58,4 +59,38 @@
       last=y;
     },{passive:true});
   })();
+
+  // 5. solutionHighlight — one item/screen is "active" at a time: the screen
+  //    whose centre is crossing the viewport's vertical centre. Driven by an
+  //    IntersectionObserver whose root is squeezed to a 1px centre line via
+  //    rootMargin. DOM writes are batched in rAF; the highlight is visual only,
+  //    so nothing here is required for the content to make sense.
+  document.querySelectorAll('[data-solhi]').forEach(function(sec){
+    var screens=[].slice.call(sec.querySelectorAll('[data-solhi-screen]'));
+    var items=[].slice.call(sec.querySelectorAll('[data-solhi-item]'));
+    if(!screens.length){return;}
+
+    var active=-1, raf=0;
+    function apply(i){
+      if(i===active){return;}
+      active=i;
+      if(raf){return;}
+      raf=requestAnimationFrame(function(){
+        raf=0;
+        screens.forEach(function(el,n){el.classList.toggle('active',n===active);});
+        items.forEach(function(el,n){el.classList.toggle('active',n===active);});
+      });
+    }
+    apply(0); // first row lit before any scrolling
+
+    if(!('IntersectionObserver' in window)){return;}
+    // Root shrunk to a 1px band at the vertical centre: whatever screen overlaps
+    // that band is the active one.
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){apply(+e.target.getAttribute('data-index'));}
+      });
+    },{rootMargin:'-50% 0px -50% 0px',threshold:0});
+    screens.forEach(function(el){io.observe(el);});
+  });
 </script>

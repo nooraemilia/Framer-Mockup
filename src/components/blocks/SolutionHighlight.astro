@@ -1,0 +1,46 @@
+---
+// BLOCK: solutionHighlight
+// A scroll-driven, two-column "solution" module.
+//   • LEFT  — a vertical gallery of phone screens in normal flow (scrolls
+//             bottom→top with the page).
+//   • RIGHT — a sticky, vertically-centred column: kick + heading + a list.
+// As the gallery scrolls, exactly one item is "active" — the one whose screen
+// is centred in the viewport. Item and screen are emphasised together.
+//
+// Each `items` entry pairs ONE list bullet with ONE phone screen, so the
+// item→screen mapping is a single content line. Duplicate an entry to add a
+// row; remove one to drop it. Reordering is just reordering the array.
+//
+// { kick, heading, items:[{ bold, text, image:{src,alt} | ph }] }
+const { kick, heading, items = [] } = Astro.props.block;
+---
+<section class="solhisec" data-solhi>
+  <div class="wrap">
+    <div class="solhi-grid">
+      <div class="solhi-gallery">
+        {items.map((it, i) => (
+          <figure class="solhi-screen" data-solhi-screen data-index={i}>
+            {it.image && it.image.src
+              ? <img
+                  src={it.image.src}
+                  alt={it.image.alt || ''}
+                  loading="lazy"
+                  onerror="this.closest('.solhi-screen').classList.add('is-missing')"
+                />
+              : <div class="solhi-ph">{it.ph || ''}</div>}
+          </figure>
+        ))}
+      </div>
+
+      <div class="solhi-notes reveal">
+        <p class="kick">{kick}</p>
+        <h3>{heading}</h3>
+        <ul class="solhi-list">
+          {items.map((it, i) => (
+            <li data-solhi-item data-index={i}><b>{it.bold}</b>{it.text}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
