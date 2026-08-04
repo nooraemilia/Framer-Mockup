@@ -1,0 +1,41 @@
+---
+// BLOCK: intro
+// { tagline:{t1,rest}, statement:{text,dim?}, lead(html), buttons:[{label,href,style?}],
+//   meta:[{label,value}], hero:{src,alt} | {ph} }
+const { tagline, statement, lead, buttons = [], meta = [], hero = {} } = Astro.props.block;
+const isExternal = (href) => typeof href === 'string' && /^https?:\/\//.test(href);
+---
+<header class="intro">
+  <div class="wrap">
+    <p class="tagline"><span class="t1">{tagline.t1}</span> {tagline.rest}</p>
+    <div class="intro-grid">
+      <div>
+        <h1 class="statement">{statement.text}{statement.dim && <span class="dim">{statement.dim}</span>}</h1>
+        <p class="lead" set:html={lead}></p>
+        {buttons.length > 0 && (
+          <div class="actions">
+            {buttons.map((b) => (
+              <a
+                href={b.href}
+                class={b.style === 'secondary' ? 'btn secondary' : 'btn'}
+                {...(isExternal(b.href) ? { target: '_blank', rel: 'noopener' } : {})}
+              >{b.label}</a>
+            ))}
+          </div>
+        )}
+      </div>
+      <div class="intro-aside">
+        {hero.src
+          ? <img src={hero.src} alt={hero.alt} />
+          : <div class="ph">{hero.ph || 'Hero image'}</div>}
+      </div>
+    </div>
+    {meta.length > 0 && (
+      <div class="meta">
+        {meta.map((m) => (
+          <div><div class="m-label">{m.label}</div><div class="m-val">{m.value}</div></div>
+        ))}
+      </div>
+    )}
+  </div>
+</header>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import BlockRenderer from '../components/BlockRenderer.astro';
+
+interface Props {
+  caseStudy: {
+    title: string;
+    description?: string;
+    blocks: any[];
+  };
+}
+const { caseStudy } = Astro.props;
+---
+<BaseLayout title={caseStudy.title} description={caseStudy.description} bodyClass="page-case">
+  <div class="wrap backrow"><a href="/#projects" class="back">&larr; Back to projects</a></div>
+  <BlockRenderer blocks={caseStudy.blocks} />
+</BaseLayout>

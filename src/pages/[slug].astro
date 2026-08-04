@@ -1,0 +1,17 @@
+---
+// Every case study is one content file in src/data/caseStudies/.
+// Each exports a default object { slug, title, description, blocks:[...] }.
+// This route turns each file into a static page at /<slug>.
+import CaseLayout from '../layouts/CaseLayout.astro';
+
+export async function getStaticPaths() {
+  const modules = import.meta.glob('../data/caseStudies/*.js', { eager: true });
+  return Object.values(modules).map((mod) => {
+    const cs = mod.default;
+    return { params: { slug: cs.slug }, props: { caseStudy: cs } };
+  });
+}
+
+const { caseStudy } = Astro.props;
+---
+<CaseLayout caseStudy={caseStudy} />

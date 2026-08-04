@@ -1,0 +1,15 @@
+---
+// BLOCK: pullQuote  (light, centred — Option E from the hand-built pages)
+// Use when the quote has no named person (a guiding question, a result stat).
+// For a full-bleed DARK band instead, use the `bigQuote` block.
+// { quote, cite }
+const { quote, cite } = Astro.props.block;
+---
+<section class="pull">
+  <div class="wrap">
+    <div class="reveal">
+      <blockquote set:html={quote}></blockquote>
+      {cite && <cite>{cite}</cite>}
+    </div>
+  </div>
+</section>

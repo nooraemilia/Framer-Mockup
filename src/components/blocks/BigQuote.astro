@@ -1,0 +1,11 @@
+---
+// BLOCK: bigQuote  (full-bleed DARK band)
+// { quote, attribution }
+const { quote, attribution } = Astro.props.block;
+---
+<section class="bigquote">
+  <div class="inner reveal">
+    <blockquote set:html={quote}></blockquote>
+    {attribution && <div class="attribution">{attribution}</div>}
+  </div>
+</section>
